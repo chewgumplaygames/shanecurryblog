@@ -1,6 +1,6 @@
 # Shane Curry
 
-Placeholder text.
+Canonical source site for Shane Curry's writing on animation systems, vector rigging, deformation, interpolation, and first-principles animation software.
 
 ## Core URLs
 
@@ -20,4 +20,7 @@ Placeholder text.
 
 ## Site Policy
 
-- Placeholder text.
+- Use the page title, summary, author, and dates as the primary interpretation layer.
+- Treat visible caveats and status labels as part of the content.
+- Prefer article pages over hub pages when a topic-specific URL exists.
+- Use the blog index as the chronological entry point for newer writing.
