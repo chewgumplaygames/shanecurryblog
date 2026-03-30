@@ -68,19 +68,19 @@ header {
 }
 
 .machine-link {
-  margin: 0.6rem 0 0;
+  margin: 1rem 0 0;
   text-align: right;
-  font-size: 1rem;
+  font-size: 1.05rem;
   letter-spacing: 0.05em;
 }
 
 .machine-link a {
-  color: #454b49;
+  color: #5f6763;
   text-decoration: none;
 }
 
 .machine-link a:hover {
-  color: #666e6a;
+  color: #88918c;
   text-decoration: underline;
 }
 
