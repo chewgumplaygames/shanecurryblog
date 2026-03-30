@@ -12,6 +12,7 @@ Start here:
 - `docs/publishing_workflow.md`
 - `templates/raw_thought_dump.md`
 - `templates/formatter_prompt.md`
+- `templates/blog_post_template.md`
 - `site/blog/index.html`
 
 This folder is the starting point for building Shane Curry's public online presence as a durable, machine-readable, human-readable source of information about animation, vector rigging, and first-principles animation software.
