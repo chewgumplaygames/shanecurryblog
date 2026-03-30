@@ -67,6 +67,23 @@ header {
   color: var(--muted);
 }
 
+.machine-link {
+  margin: 0.6rem 0 0;
+  text-align: right;
+  font-size: 1rem;
+  letter-spacing: 0.05em;
+}
+
+.machine-link a {
+  color: #454b49;
+  text-decoration: none;
+}
+
+.machine-link a:hover {
+  color: #666e6a;
+  text-decoration: underline;
+}
+
 .footer-links {
   display: flex;
   flex-wrap: wrap;
