@@ -3,7 +3,7 @@
   <channel>
     <title>Shane Curry</title>
     <link>https://shanecurry.com/</link>
-    <description>Updates, blog posts, and durable technical pages by Shane Curry.</description>
+    <description>Placeholder text.</description>
     <language>en-us</language>
     <lastBuildDate>Mon, 30 Mar 2026 20:00:00 GMT</lastBuildDate>
 
@@ -12,10 +12,7 @@
       <link>https://shanecurry.com/blog/the-vagueness-was-protective/</link>
       <guid>https://shanecurry.com/blog/the-vagueness-was-protective/</guid>
       <pubDate>Mon, 30 Mar 2026 19:56:00 GMT</pubDate>
-      <description>
-        A working note about how impossibility allowed a creative vision to remain emotionally
-        comforting and undefined until AI removed the technical barrier.
-      </description>
+      <description>Placeholder text.</description>
     </item>
 
     <item>
@@ -23,10 +20,7 @@
       <link>https://shanecurry.com/blog/emotional-scope-creep/</link>
       <guid>https://shanecurry.com/blog/emotional-scope-creep/</guid>
       <pubDate>Mon, 30 Mar 2026 19:57:00 GMT</pubDate>
-      <description>
-        A working note about a utility project that grew because the characters inside it kept
-        demanding more emotional and structural attention.
-      </description>
+      <description>Placeholder text.</description>
     </item>
 
     <item>
@@ -34,10 +28,7 @@
       <link>https://shanecurry.com/blog/ai-ended-the-loneliness-of-making/</link>
       <guid>https://shanecurry.com/blog/ai-ended-the-loneliness-of-making/</guid>
       <pubDate>Mon, 30 Mar 2026 19:58:00 GMT</pubDate>
-      <description>
-        A working note about how conversational collaboration with Claude reduced the emotional
-        isolation of solo development work.
-      </description>
+      <description>Placeholder text.</description>
     </item>
 
     <item>
@@ -45,10 +36,7 @@
       <link>https://shanecurry.com/blog/duration-is-a-proxy-for-worth/</link>
       <guid>https://shanecurry.com/blog/duration-is-a-proxy-for-worth/</guid>
       <pubDate>Mon, 30 Mar 2026 19:59:00 GMT</pubDate>
-      <description>
-        A working note about the habit of valuing output through time spent and how AI puts
-        pressure on that measurement.
-      </description>
+      <description>Placeholder text.</description>
     </item>
 
     <item>
@@ -56,10 +44,7 @@
       <link>https://shanecurry.com/blog/none-of-us-have-parents/</link>
       <guid>https://shanecurry.com/blog/none-of-us-have-parents/</guid>
       <pubDate>Mon, 30 Mar 2026 20:00:00 GMT</pubDate>
-      <description>
-        A working note about the current AI moment as a collective sketchbook phase with no stable
-        mentor class above it.
-      </description>
+      <description>Placeholder text.</description>
     </item>
 
     <item>
@@ -67,10 +52,7 @@
       <link>https://shanecurry.com/blog/</link>
       <guid>https://shanecurry.com/blog/#initial-scaffold</guid>
       <pubDate>Mon, 30 Mar 2026 17:00:00 GMT</pubDate>
-      <description>
-        Initial publication scaffold for Shane Curry's canonical source site, including the blog
-        index, identity page, topic hub, notes method, and machine-readable support files.
-      </description>
+      <description>Placeholder text.</description>
     </item>
   </channel>
 </rss>
