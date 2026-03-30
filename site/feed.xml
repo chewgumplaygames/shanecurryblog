@@ -61,16 +61,5 @@
         mentor class above it.
       </description>
     </item>
-
-    <item>
-      <title>Initial site scaffold and blog index</title>
-      <link>https://shanecurry.com/blog/</link>
-      <guid>https://shanecurry.com/blog/#initial-scaffold</guid>
-      <pubDate>Mon, 30 Mar 2026 17:00:00 GMT</pubDate>
-      <description>
-        Initial publication scaffold for Shane Curry's canonical source site, including the blog
-        index, identity page, topic hub, notes method, and machine-readable support files.
-      </description>
-    </item>
   </channel>
 </rss>

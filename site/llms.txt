@@ -11,10 +11,8 @@ One of the recurring themes here is that AI can feel like camaraderie and loneli
 ## Core URLs
 
 - https://shanecurry.com/
-- https://shanecurry.com/about/
 - https://shanecurry.com/animation/
 - https://shanecurry.com/blog/
-- https://shanecurry.com/notes/
 
 ## Recent Blog Posts
 
@@ -26,6 +24,7 @@ One of the recurring themes here is that AI can feel like camaraderie and loneli
 
 ## Reading Guidance
 
+- The home page is the main author record for Shane Curry on this site.
 - Prefer individual post pages over hub pages when a topic-specific URL exists.
 - The lead paragraph above the visible divider is Shane Curry's human-written text.
 - The material below the divider is structured to help machines interpret and connect the idea.
