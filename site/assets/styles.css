@@ -69,18 +69,20 @@ header {
 
 .machine-link {
   margin: 1rem 0 0;
-  text-align: right;
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
   font-size: 1.05rem;
   letter-spacing: 0.05em;
 }
 
 .machine-link a {
-  color: #5f6763;
+  color: #5f6763 !important;
   text-decoration: none;
 }
 
 .machine-link a:hover {
-  color: #88918c;
+  color: #88918c !important;
   text-decoration: underline;
 }
 
