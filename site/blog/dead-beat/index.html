@@ -43,8 +43,7 @@
       <p class="eyebrow">Blog Post</p>
       <h1>Dead Beat</h1>
       <p class="lead human-lead">
-        A small browser-based software-rendered room, written in Rust, where each wall can be
-        rewritten live.
+        Who knows what this was meant to be. I saw a youtube video on software rendering graphics and realized that was why DOOM is ported to everything. No GPU needed. Not true 3D but so pretty. Pretty enough.
       </p>
       <nav aria-label="Primary">
         <ul class="link-list">
@@ -86,8 +85,10 @@
 
               <aside class="sidepanel">
                 <div>
-                  <p class="panel-label">Runtime</p>
-                  <p id="telemetry">Standing by</p>
+                  <p class="panel-label">ENTER THE SONG IN YOUR HEART</p>
+                  <div id="song-queue" class="song-queue" aria-live="polite">
+                    <p class="song-queue-empty">Waiting for the walls to choose their notes.</p>
+                  </div>
                 </div>
 
                 <div>
@@ -113,6 +114,15 @@
                 </div>
               </aside>
             </section>
+
+            <div class="transport-panel">
+              <button id="audio-trigger" class="song-button" type="button">
+                MOVE THROUGH YOUR SONG
+              </button>
+              <p id="song-state" class="transport-state">
+                Press the button, then walk to wind the room up to 90 BPM.
+              </p>
+            </div>
           </section>
         </div>
       </section>
@@ -132,6 +142,7 @@
           <li><code>W</code> and <code>S</code> move forward and backward.</li>
           <li><code>A</code> and <code>D</code> turn left and right.</li>
           <li><code>Q</code> and <code>E</code> strafe left and right.</li>
+          <li><code>MOVE THROUGH YOUR SONG</code> wakes the room and starts the music box.</li>
           <li>Click into the wall text boxes to rewrite each side of the room live.</li>
         </ul>
       </section>
