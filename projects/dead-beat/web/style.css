@@ -30,7 +30,15 @@
 }
 
 .dead-beat-app .shell {
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  padding: 24px 0 32px;
+}
+
+.dead-beat-page .dead-beat-app .shell {
   width: min(1120px, calc(100vw - 48px));
+  max-width: 1120px;
   margin: 0 auto;
   padding: 48px 24px 64px;
 }
@@ -72,8 +80,8 @@
 
 .dead-beat-app .stage {
   display: grid;
-  grid-template-columns: minmax(0, 720px) minmax(260px, 1fr);
-  gap: 24px;
+  grid-template-columns: minmax(0, 720px) minmax(220px, 1fr);
+  gap: 20px;
   align-items: start;
 }
 
@@ -81,6 +89,7 @@
 .dead-beat-app .sidepanel {
   background: var(--panel);
   border: 1px solid var(--panel-border);
+  min-width: 0;
 }
 
 .dead-beat-app .frame {
@@ -148,6 +157,7 @@
 
 .dead-beat-app .wall-input {
   width: 100%;
+  max-width: 100%;
   border: 1px solid var(--panel-border);
   background: #020402;
   color: var(--text-main);
@@ -157,6 +167,10 @@
   resize: vertical;
   font-size: 1.45rem;
   line-height: 1.05;
+}
+
+.dead-beat-app .stage > * {
+  min-width: 0;
 }
 
 .dead-beat-app .wall-input:focus {
@@ -170,9 +184,21 @@
   font-size: 1.2rem;
 }
 
+@media (max-width: 1040px) {
+  .dead-beat-app .stage {
+    grid-template-columns: 1fr;
+  }
+}
+
 @media (max-width: 900px) {
   .dead-beat-app .shell {
+    padding: 20px 0 28px;
+  }
+
+  .dead-beat-page .dead-beat-app .shell {
     width: min(100vw - 24px, 720px);
+    max-width: 720px;
+    margin: 0 auto;
     padding: 32px 12px 48px;
   }
 
