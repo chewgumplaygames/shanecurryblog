@@ -1,0 +1,289 @@
+@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap");
+
+:root {
+  --fh-bg: #03040b;
+  --fh-panel: rgba(8, 10, 20, 0.96);
+  --fh-border: #2c4566;
+  --fh-text: #d9f7ff;
+  --fh-soft: #8bb5c4;
+  --fh-cyan: #87e8ff;
+  --fh-amber: #ffd486;
+  --fh-shadow: rgba(0, 0, 0, 0.48);
+  --fh-font-display: "Press Start 2P", "Courier New", monospace;
+  --fh-font-body: "VT323", "Courier New", monospace;
+}
+
+.falling-hall-app *,
+.falling-hall-page {
+  box-sizing: border-box;
+}
+
+.falling-hall-app {
+  color: var(--fh-text);
+  font-family: var(--fh-font-body);
+}
+
+.falling-hall-app .shell {
+  width: 100%;
+}
+
+.falling-hall-app .hero {
+  margin-bottom: 28px;
+}
+
+.falling-hall-app .hero .eyebrow,
+.falling-hall-app .panel-label,
+.falling-hall-app .frame-bar,
+.falling-hall-app .meter-label {
+  font-family: var(--fh-font-body);
+  font-size: 0.8rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.falling-hall-app .hero .eyebrow {
+  margin: 0 0 10px;
+  color: var(--fh-amber);
+}
+
+.falling-hall-app h2 {
+  margin: 0;
+  font-family: var(--fh-font-display);
+  font-size: clamp(1.8rem, 5vw, 3.2rem);
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: 0.05em;
+}
+
+.falling-hall-app .lede {
+  max-width: 42rem;
+  margin: 16px 0 0;
+  font-size: 1.52rem;
+  color: var(--fh-soft);
+}
+
+.falling-hall-app .stage {
+  display: grid;
+  grid-template-columns: minmax(0, 760px) minmax(220px, 1fr);
+  gap: 22px;
+  align-items: start;
+}
+
+.falling-hall-app .frame,
+.falling-hall-app .sidepanel {
+  border: 1px solid var(--fh-border);
+  background:
+    radial-gradient(circle at top, rgba(135, 232, 255, 0.08), transparent 36%),
+    linear-gradient(180deg, rgba(255, 212, 134, 0.04), transparent 30%),
+    var(--fh-panel);
+  box-shadow:
+    0 1rem 2rem var(--fh-shadow),
+    inset 0 0 0.75rem rgba(135, 232, 255, 0.05);
+}
+
+.falling-hall-app .frame {
+  display: grid;
+  gap: 12px;
+  padding: 14px;
+}
+
+.falling-hall-app .frame-bar {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 2px 6px 10px;
+  color: var(--fh-soft);
+}
+
+.falling-hall-app .canvas-wrap {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(135, 232, 255, 0.22);
+  background:
+    radial-gradient(circle at center, rgba(14, 20, 35, 0.55), transparent 58%),
+    #000000;
+}
+
+.falling-hall-app canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+}
+
+.falling-hall-app .scanlines,
+.falling-hall-app .vignette {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.falling-hall-app .scanlines {
+  background:
+    repeating-linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.03) 0,
+      rgba(255, 255, 255, 0.03) 1px,
+      rgba(0, 0, 0, 0) 1px,
+      rgba(0, 0, 0, 0) 3px
+    );
+  mix-blend-mode: screen;
+  opacity: 0.44;
+}
+
+.falling-hall-app .vignette {
+  background:
+    radial-gradient(circle at center, rgba(0, 0, 0, 0) 36%, rgba(0, 0, 0, 0.54) 100%),
+    radial-gradient(circle at center, rgba(255, 212, 134, 0.08), transparent 48%);
+}
+
+.falling-hall-app .transport-panel {
+  display: grid;
+  gap: 8px;
+}
+
+.falling-hall-app .song-button {
+  width: 100%;
+  border: 1px solid var(--fh-amber);
+  background:
+    linear-gradient(180deg, rgba(255, 212, 134, 0.1), rgba(255, 212, 134, 0.04)),
+    rgba(8, 10, 20, 0.92);
+  color: var(--fh-amber);
+  padding: 0.95rem 1rem 0.85rem;
+  font-family: var(--fh-font-display);
+  font-size: 0.84rem;
+  letter-spacing: 0.08em;
+  text-align: left;
+  cursor: pointer;
+}
+
+.falling-hall-app .song-button:hover,
+.falling-hall-app .song-button:focus-visible {
+  background:
+    linear-gradient(180deg, rgba(255, 212, 134, 0.2), rgba(255, 212, 134, 0.08)),
+    rgba(10, 13, 25, 0.98);
+  color: #fff0c4;
+  outline: none;
+}
+
+.falling-hall-app .transport-state {
+  margin: 0;
+  font-size: 1.06rem;
+  color: var(--fh-soft);
+}
+
+.falling-hall-app .telemetry-grid {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.falling-hall-app .telemetry-card {
+  display: grid;
+  gap: 6px;
+  padding: 12px;
+  border: 1px solid rgba(135, 232, 255, 0.18);
+  background: rgba(3, 5, 10, 0.78);
+}
+
+.falling-hall-app .telemetry-card strong {
+  font-family: var(--fh-font-display);
+  font-size: 0.92rem;
+  line-height: 1.4;
+}
+
+.falling-hall-app .panel-label {
+  color: var(--fh-cyan);
+}
+
+.falling-hall-app .meter {
+  position: relative;
+  overflow: hidden;
+  height: 8px;
+  border: 1px solid rgba(135, 232, 255, 0.18);
+  background: rgba(3, 5, 10, 0.96);
+}
+
+.falling-hall-app .meter > span {
+  display: block;
+  width: 100%;
+  height: 100%;
+  transform-origin: left center;
+  transform: scaleX(0);
+  background: linear-gradient(90deg, var(--fh-cyan), #b9effc);
+  box-shadow: 0 0 0.4rem rgba(135, 232, 255, 0.42);
+}
+
+.falling-hall-app .danger-meter > span {
+  background: linear-gradient(90deg, var(--fh-cyan), var(--fh-amber), #ff8a66);
+  box-shadow: 0 0 0.6rem rgba(255, 212, 134, 0.5);
+}
+
+.falling-hall-app .sidepanel {
+  display: grid;
+  gap: 18px;
+  padding: 18px;
+  align-content: start;
+}
+
+.falling-hall-app .sidepanel p {
+  margin: 0 0 0.8rem;
+}
+
+.falling-hall-app .control-list {
+  margin: 0;
+  padding-left: 1.2rem;
+}
+
+.falling-hall-app .control-list li + li {
+  margin-top: 0.4rem;
+}
+
+.falling-hall-app code {
+  background: rgba(255, 212, 134, 0.08);
+}
+
+@media (max-width: 1040px) {
+  .falling-hall-app .stage {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 720px) {
+  .falling-hall-app .telemetry-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .falling-hall-app .hero .eyebrow,
+  .falling-hall-app .panel-label,
+  .falling-hall-app .frame-bar {
+    font-size: 0.72rem;
+  }
+
+  .falling-hall-app .frame {
+    padding: 12px;
+  }
+
+  .falling-hall-app .sidepanel {
+    padding: 16px;
+    font-size: 1.2rem;
+    line-height: 1.28;
+  }
+
+  .falling-hall-app .control-list {
+    padding-left: 1rem;
+  }
+
+  .falling-hall-app .control-list li + li {
+    margin-top: 0.28rem;
+  }
+
+  .falling-hall-app .transport-state {
+    font-size: 0.94rem;
+  }
+
+  .falling-hall-app .telemetry-card strong {
+    font-size: 0.8rem;
+  }
+}
