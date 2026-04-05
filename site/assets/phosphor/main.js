@@ -246,14 +246,6 @@ function render() {
   }
   ctx.stroke();
 
-  // Very faint horizon line — gives the oscilloscope a baseline reference
-  ctx.shadowBlur = 2;
-  ctx.strokeStyle = `rgba(${PHCOLOR},0.07)`;
-  ctx.beginPath();
-  ctx.moveTo(0, H / 2);
-  ctx.lineTo(W, H / 2);
-  ctx.stroke();
-
   ctx.restore();
 }
 
