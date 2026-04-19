@@ -9,11 +9,12 @@
 PYTHON ?= /opt/homebrew/bin/python3
 PORT   ?= 8765
 
-.PHONY: build serve clean help
+.PHONY: build serve watch clean help
 
 help:
 	@echo "make build    regenerate site/ from content/"
 	@echo "make serve    serve site/ on http://localhost:$(PORT)"
+	@echo "make watch    serve + rebuild on every content/ or tools/ change"
 	@echo "make clean    remove generated site/*.html (preserves assets/, content/)"
 
 build:
@@ -21,6 +22,18 @@ build:
 
 serve:
 	@cd site && $(PYTHON) -m http.server $(PORT)
+
+# Author-mode: dev server + fswatch trigger on content/ or tools/ change.
+# Requires `brew install fswatch`. Refresh the browser manually after a
+# save; no WebSocket live-reload (keeps the stack at "two processes").
+watch:
+	@command -v fswatch >/dev/null || { echo "install fswatch: brew install fswatch"; exit 1; }
+	@$(MAKE) build
+	@(cd site && $(PYTHON) -m http.server $(PORT)) & \
+	 SERVER_PID=$$!; \
+	 trap "kill $$SERVER_PID 2>/dev/null" EXIT; \
+	 echo "serving http://localhost:$(PORT)/ — watching content/ and tools/"; \
+	 fswatch -o content tools | xargs -n1 -I{} $(MAKE) build
 
 # Only delete files we generate. Hand-authored content lives in content/.
 # Static assets (fonts, css, js, experiment bundles) live in site/assets/

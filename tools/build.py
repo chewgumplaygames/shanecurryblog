@@ -90,6 +90,86 @@ def read_post(toml_path: Path) -> Post:
 
 
 # ----------------------------------------------------------------------
+# Post index: one pass over content/, read per-post frontmatter, sort
+# by published desc. Used by the blog-index body generator AND by the
+# menubar Blog submenu generator so both derive from the same source.
+# ----------------------------------------------------------------------
+
+def collect_posts() -> list[dict]:
+    """Return every post.toml under content/ as a sorted list of dicts.
+
+    Each entry: title, url, kind, published (datetime.date | None), blurb.
+    Sorted newest first; entries without `published` sink to the bottom.
+    """
+    entries = []
+    for tp in sorted(CONTENT.rglob("post.toml")):
+        fm = tomllib.loads(tp.read_text())
+        rel = tp.relative_to(CONTENT).parent  # e.g. blog/phosphor
+        entries.append({
+            "title":     fm.get("title", ""),
+            "url":       "/" + str(rel).replace("\\", "/") + "/",
+            "kind":      fm.get("kind", "post"),
+            "published": fm.get("published"),
+            "blurb":     fm.get("blurb", fm.get("description", "")),
+        })
+    # Reverse-chronological. `None` published dates float to the bottom.
+    entries.sort(
+        key=lambda e: (e["published"] is not None, e["published"]),
+        reverse=True,
+    )
+    return entries
+
+
+def _html_escape(s: str) -> str:
+    return (s.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
+             .replace('"', "&quot;"))
+
+
+def render_blog_index_items(posts: list[dict]) -> str:
+    """One <section class="window"> per post, matching the existing style."""
+    parts = []
+    for p in posts:
+        exp_attr = " data-experiment" if p["kind"] == "experiment" else ""
+        if p["kind"] == "experiment":
+            status = f"status: playable prototype &middot; published: {p['published']}"
+        elif p["kind"] == "note":
+            status = f"working note &middot; source session: {p['published']}"
+        else:
+            status = f"published: {p['published']}"
+        parts.append(
+            f'      <section class="window" data-title="{_html_escape(p["title"])}"{exp_attr}>\n'
+            f'        <div class="window-content">\n'
+            f'          <p>\n'
+            f'            <a href="{p["url"]}">{_html_escape(p["title"])}</a>: {p["blurb"]}\n'
+            f'          </p>\n'
+            f'          <p>{status}</p>\n'
+            f'        </div>\n'
+            f'      </section>'
+        )
+    return "\n\n".join(parts)
+
+
+def render_menubar_blog_items(posts: list[dict], limit: int = 5) -> str:
+    """Top-N posts formatted as dropdown-menu <a> lines.
+
+    Hotkey = first letter of title (visual only; duplicates across items
+    are fine since keyboard nav cycles). The leading "All posts" item
+    stays hand-authored in the template; this fills the rest.
+    """
+    lines = []
+    for p in posts[:limit]:
+        title = p["title"]
+        if not title:
+            continue
+        hk, rest = title[0], title[1:]
+        lines.append(
+            f'          <a href="{p["url"]}" role="menuitem">'
+            f'<span class="hk">{_html_escape(hk)}</span>{_html_escape(rest)}</a>'
+        )
+    return "\n".join(lines) + ("\n" if lines else "")
+
+
+# ----------------------------------------------------------------------
 # Output paths
 # ----------------------------------------------------------------------
 
@@ -124,7 +204,8 @@ def render_banner() -> str:
 # Template substitution
 # ----------------------------------------------------------------------
 
-def render_page(template: str, post: Post, banner: str) -> str:
+def render_page(template: str, post: Post, banner: str,
+                menu_blog_items: str) -> str:
     fm = post.frontmatter
     subs = {
         "{{ TITLE }}":         fm.get("title", ""),
@@ -135,6 +216,7 @@ def render_page(template: str, post: Post, banner: str) -> str:
         "{{ EXTRA_BODY_END }}": post.extra_body,
         "{{ BBS_BANNER }}":    banner,
         "{{ CONTENT }}":       post.body_html.rstrip() + "\n",
+        "{{ MENU_BLOG_ITEMS }}": menu_blog_items,
         "{{ ASSET_VERSION }}": ASSET_VERSION,
         "{{ ASSET_DATE }}":    ASSET_DATE,
     }
@@ -159,16 +241,35 @@ def build() -> int:
     template = TEMPLATE.read_text()
     banner = render_banner()
 
+    # One pass over every post.toml first: needed for both the blog-index
+    # body and the menubar Blog submenu, which are derived from the same
+    # published/kind/blurb metadata.
+    posts = collect_posts()
+    blog_index_items = render_blog_index_items(posts)
+    menu_blog_items = render_menubar_blog_items(posts)
+
     tomls = sorted(CONTENT.rglob("*.toml"))
     if not tomls:
         print("no .toml content files found", file=sys.stderr)
         return 0
 
+    blog_index_toml = CONTENT / "blog" / "index.toml"
+
     for tp in tomls:
         post = read_post(tp)
+        # For the blog index page, append the generated post-list HTML
+        # after whatever lede the hand-authored frag.html provides.
+        if tp == blog_index_toml:
+            post = Post(
+                frontmatter=post.frontmatter,
+                body_html=post.body_html.rstrip() + "\n\n" + blog_index_items + "\n",
+                jsonld=post.jsonld,
+                extra_head=post.extra_head,
+                extra_body=post.extra_body,
+            )
         out_path = output_path_for(tp)
         out_path.parent.mkdir(parents=True, exist_ok=True)
-        out_path.write_text(render_page(template, post, banner))
+        out_path.write_text(render_page(template, post, banner, menu_blog_items))
         print(f"  {tp.relative_to(REPO)}  ->  {out_path.relative_to(REPO)}")
 
     print(f"built {len(tomls)} pages (asset version: {ASSET_VERSION})")
