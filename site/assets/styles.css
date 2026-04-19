@@ -104,15 +104,10 @@ body {
   background: var(--ega-black);
   padding: 0;
   overflow: hidden;
+  width: 100%;
   font-family: "VGA-1x", "VGA", monospace;
   font-size: 16px;
   line-height: 16px;
-  /* Flex-center the .ansi-art child so even when the art is wider than
-     the viewport, the overflow is symmetric on both sides instead of
-     bleeding all to the right (which is what `margin: 0 auto` does
-     when the child is wider than its container). */
-  display: flex;
-  justify-content: center;
 }
 
 /* Global EGA color classes — used by .ansi-art output from
@@ -145,14 +140,20 @@ body {
 
 /* ANSI art rows (output of tools/ans_to_html.py) — every row is a
    single <pre> at the bitmap cell height, no margin/padding so they
-   stack pixel-tight. Container is .ansi-art, centered horizontally
-   inside its parent (.bbs-header), surrounded by black sky. */
+   stack pixel-tight. Container is .ansi-art, centered inside .bbs-header
+   and allowed to overflow symmetrically (parent hides the overflow).
+   Centering uses position+translate rather than flex so that a wider-
+   than-viewport banner does not extend the document's scroll width
+   and pin itself to the left. width:max-content keeps rows on one line. */
 .ansi-art {
   background: var(--ega-black);
   font-family: "VGA", monospace;
   font-size: 16px;
   line-height: 16px;
-  flex-shrink: 0;       /* don't shrink to parent — let it overflow symmetrically */
+  width: max-content;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
 }
 .ansi-row {
   margin: 0;
