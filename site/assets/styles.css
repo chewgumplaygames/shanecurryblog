@@ -140,20 +140,20 @@ body {
 
 /* ANSI art rows (output of tools/ans_to_html.py) — every row is a
    single <pre> at the bitmap cell height, no margin/padding so they
-   stack pixel-tight. Container is .ansi-art, centered inside .bbs-header
-   and allowed to overflow symmetrically (parent hides the overflow).
-   Centering uses position+translate rather than flex so that a wider-
-   than-viewport banner does not extend the document's scroll width
-   and pin itself to the left. width:max-content keeps rows on one line. */
+   stack pixel-tight. The banner's visible ink is left-weighted by
+   design (panoramic composition with horizon on the right); to make
+   it read as "anchored to the content column" rather than drifting
+   in the viewport, align its left edge to the menubar/main-column
+   left edge via the same (100% - max-width)/2 offset those use. The
+   banner's right side overflows the viewport and is clipped by the
+   parent's overflow:hidden. */
 .ansi-art {
   background: var(--ega-black);
   font-family: "VGA", monospace;
   font-size: 16px;
   line-height: 16px;
   width: max-content;
-  position: relative;
-  left: 50%;
-  transform: translateX(-50%);
+  margin-left: max(0px, calc((100% - var(--max-width)) / 2));
 }
 .ansi-row {
   margin: 0;
