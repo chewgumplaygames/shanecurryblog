@@ -10,3 +10,8 @@ site/**/index.html
 
 # Python bytecode cache from tools/build.py
 tools/__pycache__/
+
+# Claude Code scratch area: worktrees, session state, plan files,
+# smoke-test scripts. Never meant for GitHub; may contain fragments
+# of unrelated work-in-progress.
+.claude/
